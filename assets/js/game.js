@@ -13,7 +13,9 @@ var enemyAttack = 12;
 var fight = function () { //this is function expression
     // Alert players that they are starting the round
     window.alert("Welcome to Robot Gladiators!");
+    // ask player if  they'd like to fight or run
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+
     // if player choses to fight, then fight
     if (promptFight === "fight" || promptFight === "FIGHT") {
         // remove enemy's health by subtracting the amount set in the playerAttack variable
@@ -46,7 +48,7 @@ var fight = function () { //this is function expression
         // confirm player wants to skip
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
         // if yes (true), leave fight
-        if(confirmSkip) {
+        if (confirmSkip) {
             window.alert(playerName + " has desided to skip this figth. Goodbye!");
             // substrack money from playerMoney for skipping
             playerMoney -= 2;
@@ -55,8 +57,7 @@ var fight = function () { //this is function expression
         else {
             fight();
         }
-        
-        window.alert(playerName + " has chosen to skip the fight!");
+        // if player did not chose 1 or 2 in prompt
     } else {
         window.alert("You need to choose a valid option. Try again!");
     }
@@ -64,5 +65,5 @@ var fight = function () { //this is function expression
 
 
 
-
+// run fight function to start game
 fight();
