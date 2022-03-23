@@ -73,6 +73,9 @@ var fight = function (enemyName) { //this is function expression
 };  // end of fight function
 
 var startGame = function () {
+    playerHealth = 100;//reset player stats
+    playerAttack = 10;
+    playerMoney = 10;
     for (var i = 0; i < enemyNames.length; i++) {
         if (playerHealth > 0) {
             window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
@@ -90,10 +93,23 @@ var startGame = function () {
         }
 
     }
+    endGame();
 }
 
-/* So now when we reply with "skip," 10 playerMoney credits are deducted from our total and we no longer face the same opponent just as planned.
+var endGame = function () { // function declared as expression with var keyword
+    if (playerHealth > 0) { // if player is still alive, player wins!
+        window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+    } else {
+        window.alert("You've lost your robot in battle.")
+    }
+    var playAgainConfirm = window.confirm("Would you like to play again?");
+    
+    if (playAgainConfirm) {
+        startGame();    //restart the game
+    } else {
+        window.alert("Thank you for playing Robot Gladiators! Come back soon!");
+    }
+};
 
-Now we can apply our understanding of the break statement to change the conditional statements in the while loop regarding the fight or skip prompt. Because we can use the break statement to exit the loop, we'll rearrange the prompt for the fight or skip conditional statements. Essentially, we'll check whether the prompt was replied to with a skip. If not, we'll let the fight round continue.
 
-Let's move the skip conditional statement to the top and convert it from an else if to an if statement, as shown in the following code: */
+startGame();// start the game when the page loads
