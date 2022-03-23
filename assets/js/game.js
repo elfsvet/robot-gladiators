@@ -5,7 +5,7 @@
 // "LOSE" - Player robot's health is zero or less
 
 var playerName = window.prompt("What is your robot's name?");
-var playerHealth = 50;
+var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
@@ -13,14 +13,19 @@ var playerMoney = 10;
 console.log(playerName, playerAttack, playerHealth);
 
 var enemyNames = ["Roborto", "Amy Android", "Robo Trumble"];
-var enemyHealth = 100;
+var enemyHealth = 50;
 var enemyAttack = 12;
 
+// if the enemy-robot's health is zero or less, exit from the fight loop.
+// if(enemyHealth <= 0){
+//     break;
+// }
 
 
 var fight = function (enemyName) { //this is function expression
     // repeat and execute as long as the enemy-robot is alive
-    while (enemyHealth > 0) {
+    while (playerHealth > 0 && enemyHealth > 0) {
+
 
         // Alert players that they are starting the round
         // window.alert("Welcome to Robot Gladiators!");
@@ -38,6 +43,7 @@ var fight = function (enemyName) { //this is function expression
             // check enemy's health
             if (enemyHealth <= 0) {
                 console.log(enemyName + " has died!");
+                break;
             } else {
                 console.log(enemyName + " still has " + enemyHealth + " health left.");
             }
@@ -60,9 +66,11 @@ var fight = function (enemyName) { //this is function expression
             var confirmSkip = window.confirm("Are you sure you'd like to quit?");
             // if yes (true), leave fight
             if (confirmSkip) {
-                console.log(playerName + " has desided to skip this figth. Goodbye!");
-                // substrack money from playerMoney for skipping
-                playerMoney -= 2;
+                console.log(playerName + " has decided to skip this fight. Goodbye!");
+                // subtract money from playerMoney for skipping
+                playerMoney -= 10;
+                console.log("playerMoney", playerMoney);
+                break;
             }
             // if no (false), ask question again by running fight() again
             else {
@@ -72,13 +80,18 @@ var fight = function (enemyName) { //this is function expression
         } else {
             console.log("You need to choose a valid option. Try again!");
         }
-    }
-};
+    }// end of while loop
+};  // end of fight function
 
-for (var i = 0; i<enemyNames.length; i++){
+for (var i = 0; i < enemyNames.length; i++) {
     // debugger;
     var pickedEnemyName = enemyNames[i];
     enemyHealth = 50
     fight(pickedEnemyName);
 }
 
+/* So now when we reply with "skip," 10 playerMoney credits are deducted from our total and we no longer face the same opponent just as planned.
+
+Now we can apply our understanding of the break statement to change the conditional statements in the while loop regarding the fight or skip prompt. Because we can use the break statement to exit the loop, we'll rearrange the prompt for the fight or skip conditional statements. Essentially, we'll check whether the prompt was replied to with a skip. If not, we'll let the fight round continue.
+
+Let's move the skip conditional statement to the top and convert it from an else if to an if statement, as shown in the following code: */
