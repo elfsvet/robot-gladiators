@@ -49,6 +49,7 @@ var fight = function (enemy) { //this is function expression
             // if true, leave fight by breaking loop
             break;
         }
+
         // remove enemy's health by subtracting the amount set in the playerInfo.attack variable
         //generates random damage value based on player's attack power
         var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
@@ -85,6 +86,7 @@ var fight = function (enemy) { //this is function expression
 };  // end of fight function
 
 var startGame = function () {   // function to start a new game
+    debugger;
     //reset player stats
     playerInfo.reset();
 
@@ -221,3 +223,32 @@ var enemyInfo = [
 ];
 
 startGame();// start the game when the page loads
+
+// 355
+/* r-skip conditional logic from the fight() function, as well as the confirmSkip condition, and place it in the function.
+
+Take a minute to look at the following code block, and then add it into your code above the fight() function:
+
+var fightOrSkip = function() {
+  // ask player if they'd like to fight or skip using fightOrSkip function
+  var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
+
+  // Enter the conditional recursive function call here!
+
+  // if player picks "skip" confirm and then stop the loop
+  if (promptFight === "skip" || promptFight === "SKIP") {
+    // confirm player wants to skip
+    var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+
+    // if yes (true), leave fight
+    if (confirmSkip) {
+      window.alert(playerInfo.name + " has decided to skip this fight. Goodbye!");
+      // subtract money from playerMoney for skipping
+      playerInfo.playerMoney = playerInfo.money - 10;
+      shop();
+    }
+  }
+}
+What is the recursive function call that will make our function repeat or loop? That's right—you need to add return fightOrSkip();. Having the function call itself will make it loop, which means it's recursive.
+
+Replace the comment // Enter the conditional recurs */
